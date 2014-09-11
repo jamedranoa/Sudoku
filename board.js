@@ -15,7 +15,7 @@
       _(9).times(function (row) {
         row += 1;
         that.squares.push(
-          new Sudoku.Square(col,row,Board.determineBlock(col,row))
+          new Sudoku.Square(row,col,Board.determineBlock(row,col))
         );
       });
     });
@@ -61,12 +61,13 @@
   
   Board.prototype.seed = function (col,row,val) {
     var sqr = this.findSqr(col,row)
-    sqr.val = val
+    sqr.changeVal(val)
+    sqr.$el.addClass("seed")
     sqr.seed = true
   };
   
   Board.prototype.move = function (col,row,newVal) {
-    this.findSqr(col,row).val = newVal;
+    this.findSqr(col,row).changeVal(newVal);
     this.checkStatus();
     this.print();
   };
@@ -115,7 +116,7 @@
 
   
   Board.prototype.check = function (sqr) {
-    if (!sqr.val || sqr.seed) { return true; }
+    if (!sqr.val) { return true; }
     
     var count = 0;
     var sqrs = this.squares;
