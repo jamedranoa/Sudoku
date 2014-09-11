@@ -1,8 +1,8 @@
 $(document).ready(function(){
   console.log($("#1"))
-  currentNum = 1;
-  board = new Sudoku.Board()
-  temp = ""
+  var currentNum = 1;
+  var board = new Sudoku.Board()
+  var temp = ""
    
    $(".buttons > ul > li").on("click",function (event) {
      $(".buttons > ul >li").removeClass("selected")
